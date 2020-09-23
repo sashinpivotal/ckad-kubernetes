@@ -15,12 +15,12 @@
 'd$' - delete the rest of the line
 'dG' - Deletes contents from cursor to end of file. This is very useful when editing YAML files.
 'ZZ' - Save and exit quickly.
-Insert & Paste - In order to copy from other app, Insert mode and then Cmd+V
+Replace & Paste - In order to copy from other app, Insert mode and then Cmd+V or Replace mode and Cmd+v
 `dd' 
 `o` - add a new line
 ```
 
-- I can I display line number in vi? Type "/" and line number
+- I can I display line number in vi? Type ":" and line number
 - how to delete a line? dd
 - How do I set the default editor?
 - vim available? yes
@@ -58,11 +58,20 @@ k delete all --all
 ```
 
 - Make sure the env values are with double-quote
+- Make sure to read the exam question carefully so
+  that you create either pod or deployment
 
-- Setting namespaces
+- Setting namespaces (check kubectl cheat sheet)
 
 ```
 kubectl config set-context --current --namespace=mynamespace
+```
+
+- ?? How do I display current namespace - the following
+  does not seem to work
+
+```
+kubectl config view --minify | grep namespace:
 ```
 
 - *Creating a yaml file from cut and paste from kubernetes.io
@@ -79,6 +88,8 @@ CTRL+C
 ```
 k create cronjb my-cronjob --image=busybox --schedule="* * * * *" --dry-run -o yaml  -- /bin/sh -c 'date; echo Hello from the Kubernetes cluster'  
 ```
+
+- Make sure to change `args:` with `command:`
 
 - *What is the following for? It is to create deployment yaml file.
 
@@ -149,7 +160,9 @@ kubectl create service clusterip redis --tcp=6379:6379 --dry-run -o yaml  (This 
 
 Create a Service named nginx of type NodePort to expose pod named nginx with port 80 on port 30080 on the nodes:
 
-kubectl expose pod nginx --port=80 --name nginx-service --dry-run -o yaml
+```
+kubectl expose pod nginx --port=80 --name=nginx-service --dry-run -o yaml
+```
 
 (This will automatically use the pod's labels as selectors, but you cannot specify the node port. You have to generate a definition file and then add the node port in manually before creating the service with the pod.)
 
@@ -396,6 +409,10 @@ spec:
 
 ```
 k explain pod.spec.containers.envFrom
+```
+
+```
+k explain pod.spec.containers --recursive |grep env -A10
 ```
 
 # SecurityContext
