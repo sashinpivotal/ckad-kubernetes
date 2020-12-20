@@ -49,6 +49,14 @@ export KUBE_EDITOR=nano
   - Space one page down
 ```
 
+# Exam tips
+
+- Make sure to run the command to change the context for each question
+- Check if the pod is running once a question is done
+- Make sure to create correct CM in the specified namespace
+- When exposing deployment to create service, make sure to use
+  name attribute to give it a name
+
 # General kubectl commands
 
 - Delete all resources from current namespace
